@@ -28,11 +28,12 @@ void Render() {
         return;
     }
 
-    if (UI::Begin(
-        pluginTitle,
-        S_Window,
-        UI::GetDefaultWindowFlags() | UI::WindowFlags::AlwaysAutoResize
-    )) {
+    const int flags = UI::GetDefaultWindowFlags()
+        | UI::WindowFlags::AlwaysAutoResize
+        | UI::WindowFlags::NoFocusOnAppearing
+    ;
+
+    if (UI::Begin(pluginTitle, S_Window, flags)) {
         RenderWindow();
     }
 
