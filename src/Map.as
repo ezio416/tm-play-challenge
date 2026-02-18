@@ -2,6 +2,10 @@ class Map {
     string name;
     string path;
 
+    Map(const string&in path) {
+        this.path = path;
+    }
+
     Map(CGameCtnChallengeInfo@ map) {
         name = map.Name;
         path = map.FileName;
@@ -12,15 +16,16 @@ class Map {
     }
 
     void PlayAsync() {
-        if (false
-            or name.Length == 0
-            or path.Length == 0
-        ) {
-            NotifyError("empty name or path, can't play map");
+        if (path.Length == 0) {
+            NotifyError("can't play map: empty path");
             return;
         }
 
-        trace("loading map " + name + " from path " + path);
+        if (name.Length > 0) {
+            trace("loading map " + name + " from path " + path);
+        } else {
+            trace("loading map from path " + path);
+        }
 
         auto App = cast<CTrackMania>(GetApp());
 

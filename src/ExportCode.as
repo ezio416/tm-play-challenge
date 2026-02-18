@@ -68,4 +68,14 @@ namespace PlayChallenge {
             return false;
         }
     }
+
+    bool PlayCustomChallenge(const string&in path) {
+        if (Demo()) {
+            NotifyError("demo can't play custom maps");
+            return false;
+        }
+
+        Map(path).Play();
+        return true;
+    }
 }

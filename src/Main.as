@@ -16,6 +16,7 @@ const PlayChallenge::Environment[] envis = {
     PlayChallenge::Environment::Stadium
 };
 
+string     customPath;
 bool       loaded = false;
 dictionary maps;
 dictionary mapsVRCanyon;
@@ -76,8 +77,10 @@ void RenderMenu() {
 void RenderWindow() {
     const bool demo = Demo();
 
+    const float scale = UI::GetScale();
+
     const vec2 pre = UI::GetCursorPos();
-    UI::Dummy(vec2(UI::GetScale() * 482.0f, 0.0f));
+    UI::Dummy(vec2(scale * 482.0f, 0.0f));
     UI::SetCursorPos(pre);
 
     UI::PushFont(UI::Font::DefaultBold);
@@ -140,15 +143,35 @@ void RenderWindow() {
         UI::TreePop();
     }
 
-    // if (UI::TreeNode("Custom", UI::TreeNodeFlags::Framed)) {
-    //     UI::BeginDisabled(demo);
+    if (UI::TreeNode("Custom", UI::TreeNodeFlags::Framed)) {
+        UI::BeginDisabled(demo);
 
-    //     UI::Text("hello :)");  // TODO
+        UI::Text("Path to Challenge:");
 
-    //     UI::EndDisabled();
+        UI::SetNextItemWidth(scale * 376.0f);
+        customPath = UI::InputText("##input-path", customPath);
 
-    //     UI::TreePop();
-    // }
+        UI::BeginDisabled(customPath.Length == 0);
+
+        UI::SameLine();
+        if (UI::Button(Icons::Play)) {
+            PlayChallenge::PlayCustomChallenge(customPath);
+        }
+
+        UI::SameLine();
+        if (UI::Button(Icons::TrashO)) {
+            customPath = "";
+        }
+
+        UI::EndDisabled();
+
+        UI::Text("Examples:");
+        UI::TextWrapped("- Campaigns\\01_White\\01_Canyon\\001.Map.Gbx");
+        UI::TextWrapped("- VR\\01_White\\01_Canyon\\VR_Canyon_001.Map.Gbx");
+
+        UI::EndDisabled();
+        UI::TreePop();
+    }
 
     UI::PopFont();
 }
