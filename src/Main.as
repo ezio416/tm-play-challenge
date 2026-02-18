@@ -29,6 +29,7 @@ void OnEnabled() {
 void Render() {
     if (false
         or !S_Window
+        or !loaded
         or (true
             and S_HideWithGame
             and !UI::IsGameUIVisible()
