@@ -9,3 +9,5 @@ A simple map selector for Trackmania Turbo.
 
 <!-- ![Signed](https://img.shields.io/badge/Signed-Yes-00AA00) -->
 <!-- ![Signed](https://img.shields.io/badge/Signed-School_Mode-CC1199) -->
+
+![image](images/play-challenge.png)
