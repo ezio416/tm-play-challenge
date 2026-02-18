@@ -3,12 +3,11 @@ const string  pluginIcon  = Icons::Play;
 Meta::Plugin@ pluginMeta  = Meta::ExecutingPlugin();
 const string  pluginTitle = pluginColor + pluginIcon + "\\$G " + pluginMeta.Name;
 
-bool       loaded = false;
-dictionary maps;
-dictionary mapsVRCanyon;
-dictionary mapsVRLagoon;
-dictionary mapsVRStadium;
-dictionary mapsVRValley;
+const vec3 colorWhite = vec3(0.85f);
+const vec3 colorGreen = vec3(0.35f, 0.62f, 0.0f);
+const vec3 colorBlue  = vec3(0.0f, 0.26f, 0.7f);
+const vec3 colorRed   = vec3(0.65f, 0.0f, 0.0f);
+const vec3 colorBlack = vec3(0.2f);
 
 const PlayChallenge::Environment[] envis = {
     PlayChallenge::Environment::Canyon,
@@ -16,6 +15,13 @@ const PlayChallenge::Environment[] envis = {
     PlayChallenge::Environment::Lagoon,
     PlayChallenge::Environment::Stadium
 };
+
+bool       loaded = false;
+dictionary maps;
+dictionary mapsVRCanyon;
+dictionary mapsVRLagoon;
+dictionary mapsVRStadium;
+dictionary mapsVRValley;
 
 void Main() {
     LoadMapsAsync();
@@ -82,17 +88,17 @@ void RenderWindow() {
                 UI::SameLine();
             }
 
-            if (i <= 40) {  // white
-                UI::PushStyleColor(UI::Col::Button, vec4(1.0f));
+            if (i <= 40) {
+                UI::PushStyleColor(UI::Col::Button, vec4(colorWhite, 1.0f));
                 UI::PushStyleColor(UI::Col::Text, vec4(vec3(), 1.0f));
-            } else if (i <= 80) {  // green
-                UI::PushStyleColor(UI::Col::Button, vec4(0.0f, 0.8f, 0.3f, 1.0f));
-            } else if (i <= 120) {  // blue
-                UI::PushStyleColor(UI::Col::Button, vec4(0.0f, 0.3f, 0.8f, 1.0f));
-            } else if (i <= 160) {  // red
-                UI::PushStyleColor(UI::Col::Button, vec4(0.8f, 0.0f, 0.0f, 1.0f));
-            } else {  // black
-                UI::PushStyleColor(UI::Col::Button, vec4(vec3(0.2f), 1.0f));
+            } else if (i <= 80) {
+                UI::PushStyleColor(UI::Col::Button, vec4(colorGreen, 1.0f));
+            } else if (i <= 120) {
+                UI::PushStyleColor(UI::Col::Button, vec4(colorBlue, 1.0f));
+            } else if (i <= 160) {
+                UI::PushStyleColor(UI::Col::Button, vec4(colorRed, 1.0f));
+            } else {
+                UI::PushStyleColor(UI::Col::Button, vec4(colorBlack, 1.0f));
             }
 
             UI::BeginDisabled(true
