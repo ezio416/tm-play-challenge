@@ -6,3 +6,6 @@ bool S_HideWithGame = true;
 
 [Setting category="General" name="Show/hide with Openplanet UI"]
 bool S_HideWithOP = false;
+
+[Setting category="General" name="Show warning/error notifications"]
+bool S_Notify = true;

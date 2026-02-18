@@ -3,21 +3,14 @@ const string  pluginIcon  = Icons::Play;
 Meta::Plugin@ pluginMeta  = Meta::ExecutingPlugin();
 const string  pluginTitle = pluginColor + pluginIcon + "\\$G " + pluginMeta.Name;
 
-Map@[] maps;
+dictionary maps;
+dictionary mapsVRCanyon;
+dictionary mapsVRLagoon;
+dictionary mapsVRStadium;
+dictionary mapsVRValley;
 
 void Main() {
-    auto App = cast<CTrackMania>(GetApp());
-
-    while (App.ChallengeInfos.Length < 200) {
-        yield();
-    }
-
-    for (uint i = 0; i < App.ChallengeInfos.Length; i++) {
-        CGameCtnChallengeInfo@ map = App.ChallengeInfos[i];
-        if (map !is null && map.MapUid != "" && !map.Name.Contains("VR")) {
-            maps.InsertLast(Map(map));
-        }
-    }
+    LoadMapsAsync();
 }
 
 void Render() {
