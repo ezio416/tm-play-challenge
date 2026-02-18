@@ -3,3 +3,7 @@ name = "Play Challenge"
 author = "Ezio"
 category = "Utilities"
 version = "0.1.0"
+
+[script]
+exports = [ "src/Export.as" ]
+shared_exports = [ "src/ExportShared.as" ]
