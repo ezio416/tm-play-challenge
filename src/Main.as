@@ -76,33 +76,3 @@ void RenderWindow() {
         UI::PopStyleColor(i < 40 ? 2 : 1);
     }
 }
-
-class Map {
-    string name;
-    string path;
-
-    Map(CGameCtnChallengeInfo@ map) {
-        name = map.Name;
-        path = map.FileName;
-    }
-
-    void Play() {
-        startnew(CoroutineFunc(PlayAsync));
-    }
-
-    void PlayAsync() {
-        print("loading map " + name + " from path " + path);
-
-        auto App = cast<CTrackMania>(GetApp());
-        App.BackToMainMenu();
-        while (!App.ManiaTitleFlowScriptAPI.IsReady) {
-            yield();
-        }
-
-        App.ManiaTitleFlowScriptAPI.PlayMap(path, "TMC_CampaignSolo", "");
-
-        while (!App.ManiaTitleFlowScriptAPI.IsReady) {
-            yield();
-        }
-    }
-}
