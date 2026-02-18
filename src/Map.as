@@ -16,11 +16,11 @@ class Map {
             or name.Length == 0
             or path.Length == 0
         ) {
-            error("empty name or path, can't play map");
+            NotifyError("empty name or path, can't play map");
             return;
         }
 
-        print("loading map " + name + " from path " + path);
+        trace("loading map " + name + " from path " + path);
 
         auto App = cast<CTrackMania>(GetApp());
 
