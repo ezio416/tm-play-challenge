@@ -35,7 +35,7 @@ void Render() {
         return;
     }
 
-    if (UI::Begin(pluginTitle, S_Enabled, UI::WindowFlags::AlwaysAutoResize)) {
+    if (UI::Begin(pluginTitle, S_Enabled, UI::GetDefaultWindowFlags() | UI::WindowFlags::AlwaysAutoResize)) {
         RenderWindow();
     }
 
