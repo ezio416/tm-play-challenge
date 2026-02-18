@@ -22,7 +22,7 @@ void Main() {
 
 void Render() {
     if (false
-        or !S_Enabled
+        or !S_Window
         or (true
             and S_HideWithGame
             and !UI::IsGameUIVisible()
@@ -35,7 +35,11 @@ void Render() {
         return;
     }
 
-    if (UI::Begin(pluginTitle, S_Enabled, UI::GetDefaultWindowFlags() | UI::WindowFlags::AlwaysAutoResize)) {
+    if (UI::Begin(
+        pluginTitle,
+        S_Window,
+        UI::GetDefaultWindowFlags() | UI::WindowFlags::AlwaysAutoResize
+    )) {
         RenderWindow();
     }
 
@@ -43,8 +47,8 @@ void Render() {
 }
 
 void RenderMenu() {
-    if (UI::MenuItem(pluginTitle, "", S_Enabled)) {
-        S_Enabled = !S_Enabled;
+    if (UI::MenuItem(pluginTitle, "", S_Window)) {
+        S_Window = !S_Window;
     }
 }
 
