@@ -1,3 +1,13 @@
+void ClearMaps() {
+    maps.DeleteAll();
+    mapsVRCanyon.DeleteAll();
+    mapsVRValley.DeleteAll();
+    mapsVRLagoon.DeleteAll();
+    mapsVRStadium.DeleteAll();
+
+    loaded = false;
+}
+
 bool Demo() {
     return cast<CTrackMania>(GetApp()).ManiaPlanetScriptAPI.TmTurbo_IsDemo;
 }
@@ -12,11 +22,7 @@ void LoadMapsAsync() {
         yield();
     }
 
-    maps.DeleteAll();
-    mapsVRCanyon.DeleteAll();
-    mapsVRValley.DeleteAll();
-    mapsVRLagoon.DeleteAll();
-    mapsVRStadium.DeleteAll();
+    ClearMaps();
 
     string name;
     uint num;
@@ -67,8 +73,10 @@ void LoadMapsAsync() {
         or mapsVRStadium.GetSize() != 10
     ) {
         NotifyError("failed to load all maps after " + (Time::Now - start) + "ms");
+        ClearMaps();
 
     } else {
+        loaded = true;
         trace("loaded maps after " + (Time::Now - start) + "ms");
     }
 }

@@ -1,5 +1,14 @@
 namespace PlayChallenge {
-    void PlayCampaignChallenge(const uint num) {
+    bool Loaded() {
+        return loaded;
+    }
+
+    bool PlayCampaignChallenge(const uint num) {
+        if (!loaded) {
+            NotifyError("maps are not loaded");
+            return false;
+        }
+
         if (false
             or num == 0
             or num > 200
@@ -9,25 +18,32 @@ namespace PlayChallenge {
             )
         ) {
             NotifyError("invalid map number: " + num);
-            return;
+            return false;
         }
 
         Map@ map;
         if (maps.Get(tostring(num), @map)) {
             map.Play();
+            return true;
         } else {
             NotifyError("map number not found: " + num);
+            return false;
         }
     }
 
-    void PlayCampaignChallengeVR(const Environment environment, const uint num) {
+    bool PlayCampaignChallengeVR(const Environment environment, const uint num) {
+        if (!loaded) {
+            NotifyError("maps are not loaded");
+            return false;
+        }
+
         if (false
             or num == 0
             or num > 10
             or Demo()
         ) {
             NotifyError("invalid map number: " + num);
-            return;
+            return false;
         }
 
         dictionary@ dict;
@@ -40,14 +56,16 @@ namespace PlayChallenge {
 
             default:
                 NotifyError("invalid environment: " + tostring(environment));
-                return;
+                return false;
         }
 
         Map@ map;
         if (dict.Get(tostring(num), @map)) {
             map.Play();
+            return true;
         } else {
             NotifyError("map number not found: " + num);
+            return false;
         }
     }
 }

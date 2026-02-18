@@ -3,6 +3,7 @@ const string  pluginIcon  = Icons::Play;
 Meta::Plugin@ pluginMeta  = Meta::ExecutingPlugin();
 const string  pluginTitle = pluginColor + pluginIcon + "\\$G " + pluginMeta.Name;
 
+bool       loaded = false;
 dictionary maps;
 dictionary mapsVRCanyon;
 dictionary mapsVRLagoon;
@@ -10,6 +11,18 @@ dictionary mapsVRStadium;
 dictionary mapsVRValley;
 
 void Main() {
+    LoadMapsAsync();
+}
+
+void OnDestroyed() {
+    ClearMaps();
+}
+
+void OnDisabled() {
+    ClearMaps();
+}
+
+void OnEnabled() {
     LoadMapsAsync();
 }
 
