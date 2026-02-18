@@ -8,10 +8,6 @@ void ClearMaps() {
     loaded = false;
 }
 
-bool Demo() {
-    return cast<CTrackMania>(GetApp()).ManiaPlanetScriptAPI.TmTurbo_IsDemo;
-}
-
 void LoadMapsAsync() {
     const uint64 start = Time::Now;
     trace("loading maps");
@@ -38,7 +34,7 @@ void LoadMapsAsync() {
             name = string(map.NameForUi);
 
             if (Text::TryParseUInt(name, num)) {
-                maps.Set(tostring(num), @Map(map));
+                maps.Set(tostring(num), @PlayChallenge::Map(map));
 
             } else if (name.StartsWith("VR_")) {
                 string[]@ parts = name.Split("_");
@@ -51,13 +47,13 @@ void LoadMapsAsync() {
                 }
 
                 if (parts[1] == "Canyon") {
-                    mapsVRCanyon.Set(name, @Map(map));
+                    mapsVRCanyon.Set(name, @PlayChallenge::Map(map));
                 } else if (parts[1] == "Valley") {
-                    mapsVRValley.Set(name, @Map(map));
+                    mapsVRValley.Set(name, @PlayChallenge::Map(map));
                 } else if (parts[1] == "Lagoon") {
-                    mapsVRLagoon.Set(name, @Map(map));
+                    mapsVRLagoon.Set(name, @PlayChallenge::Map(map));
                 } else if (parts[1] == "Stadium") {
-                    mapsVRStadium.Set(name, @Map(map));
+                    mapsVRStadium.Set(name, @PlayChallenge::Map(map));
                 } else {
                     warn("invalid VR map: " + name);
                 }

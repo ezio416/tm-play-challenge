@@ -1,4 +1,8 @@
 namespace PlayChallenge {
+    bool Demo() {
+        return cast<CTrackMania>(GetApp()).ManiaPlanetScriptAPI.TmTurbo_IsDemo;
+    }
+
     bool Loaded() {
         return loaded;
     }

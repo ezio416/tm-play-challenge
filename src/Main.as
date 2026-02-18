@@ -75,7 +75,7 @@ void RenderMenu() {
 }
 
 void RenderWindow() {
-    const bool demo = Demo();
+    const bool demo = PlayChallenge::Demo();
 
     const float scale = UI::GetScale();
 
