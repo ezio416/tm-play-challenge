@@ -25,15 +25,16 @@ dictionary mapsVRStadium;
 dictionary mapsVRValley;
 
 void Main() {
-    LoadMapsAsync();
+    OnEnabled();
 }
 
 void OnDestroyed() {
     ClearMaps();
+    customPath = "";
 }
 
 void OnDisabled() {
-    ClearMaps();
+    OnDestroyed();
 }
 
 void OnEnabled() {
