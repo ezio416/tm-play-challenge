@@ -3,6 +3,7 @@ name = "Play Challenge"
 author = "Ezio"
 category = "Utilities"
 version = "0.2.0"
+siteid = 826
 
 [script]
 exports = [ "src/Export.as" ]
