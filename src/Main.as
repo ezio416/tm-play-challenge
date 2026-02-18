@@ -1,5 +1,5 @@
-const string  pluginColor = "\\$88F";
-const string  pluginIcon  = Icons::ClockO;
+const string  pluginColor = "\\$0F0";
+const string  pluginIcon  = Icons::Play;
 Meta::Plugin@ pluginMeta  = Meta::ExecutingPlugin();
 const string  pluginTitle = pluginColor + pluginIcon + "\\$G " + pluginMeta.Name;
 
